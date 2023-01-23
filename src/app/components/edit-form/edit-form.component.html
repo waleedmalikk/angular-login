@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Edit</h1>
+    <form [formGroup]="editForm">
+        <div class="form-control">
+            <label>Email</label>
+            <input type="text" [disabled]="true" value={{email?.value}} />
+        </div>
+        <div class="form-control">
+            <label>New Name</label>
+            <input formControlName="name" />
+            <mat-error *ngIf="name?.errors?.['required'] && !name?.pristine">Name is required. </mat-error>
+            <mat-error
+                *ngIf="(name?.errors?.['minlength'] || name?.errors?.['maxlength']) && !name?.errors?.['Format'] ">Name
+                Length must
+                be in range 5-40.
+            </mat-error>
+                    <mat-error *ngIf="name?.errors?.['Format'] && !name?.pristine ">Name Format is Incorrect.</mat-error>
+        </div>
+        <div class="form-control">
+            <label>New Phone</label>
+            <input formControlName="phone" />
+            <mat-error *ngIf="phone?.errors?.['required'] && !phone?.pristine">Phone is required. </mat-error>
+            <mat-error
+                *ngIf="(phone?.errors?.['minlength'] || phone?.errors?.['maxlength']) && !phone?.errors?.['Format'] ">Phone
+                Length
+                must be in range 5-40.
+            </mat-error>
+            <mat-error *ngIf="phone?.errors?.['Format'] && !phone?.pristine ">Phone Format is Incorrect.</mat-error>
+        </div>
+        <button (click)="submitHandler()" class="btn" [disabled]="editForm.invalid">Save Changes</button>
+        <button (click)="cancelHandler()" class="btn can-btn">Cancel</button>
+    </form>
+</div>

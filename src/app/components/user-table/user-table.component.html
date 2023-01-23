@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Manage Users <button (click)="logOut()" class="log-btn">Log Out</button></h1>
+
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of users">
+                <td>{{u.name}} </td>
+                <td>{{u.email}}</td>
+                <td>{{u.phone}}</td>
+                <td><button class="btn" (click)="editClicked(u)"><i class="fa fa-edit "></i></button><button class="btn"
+                        (click)="delClicked(u)"><i class="fa fa-trash "></i></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div [ngClass]="{'bg-active': delCheck === true}" class="modal-bg">
+        <div class="modal">
+            <h2 class="modal-content">Are you sure you want to delete?</h2>
+            <div class="modal-btns">
+                <button (click)="processDel()" class="modal-btn">Yes</button>
+                <button (click)="crossDel()" class="modal-btn">No</button>
+            </div>
+        </div>
+    </div>
+</div>

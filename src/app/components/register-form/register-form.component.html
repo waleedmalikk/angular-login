@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Register</h1>
+  <form [formGroup]="myForm" (ngSubmit)="submitHandler()">
+    <div class="form-control">
+      <label>Full Name:</label>
+      <input type="text" formControlName="name" />
+      <mat-error *ngIf="name?.errors?.['required'] && !name?.pristine">Name is required. </mat-error>
+      <mat-error *ngIf="(name?.errors?.['minlength'] || name?.errors?.['maxlength']) && !name?.errors?.['Format'] ">Name
+        Length must be in range 5-40.
+      </mat-error>
+      <mat-error *ngIf="name?.errors?.['Format'] && !name?.pristine ">Name Format is Incorrect.</mat-error>
+    </div>
+    <div class="form-control">
+      <label>Email:</label>
+      <input formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['required'] && !email?.pristine">Email is required. </mat-error>
+      <mat-error
+        *ngIf="(email?.errors?.['minlength'] || email?.errors?.['maxlength']) && !email?.errors?.['Format'] ">Email
+        Length must be in range 5-40.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['Format'] && !email?.pristine ">Email Format is Incorrect.</mat-error>
+    </div>
+    <div class="form-control">
+      <label>Phone:</label>
+      <input formControlName="phone" />
+      <mat-error *ngIf="phone?.errors?.['required'] && !phone?.pristine">Phone is required. </mat-error>
+      <mat-error
+        *ngIf="(phone?.errors?.['minlength'] || phone?.errors?.['maxlength']) && !phone?.errors?.['Format'] ">Phone
+        Length must be in range 5-40.
+      </mat-error>
+      <mat-error *ngIf="phone?.errors?.['Format'] && !phone?.pristine ">Phone Format is Incorrect.</mat-error>
+    </div>
+    <div class="form-control">
+      <label>Password:</label>
+      <input type="password" formControlName="password" />
+      <mat-error
+        *ngIf="(password?.errors?.['minlength'] || password?.errors?.['maxlength']) && !password?.errors?.['passReg'] ">Password
+        Length must be in range 5-40.
+      </mat-error>
+      <mat-error
+        *ngIf="password?.errors?.['passReg'] && !password?.pristine ">{{password?.errors?.['passReg']}}</mat-error>
+    </div>
+    <div class="form-control">
+      <form [formGroup]="myForm2">
+        <label>Confirm Password:</label>
+        <input type="password" formControlName="confirm_password" />
+        <mat-error *ngIf="confirm_password?.errors?.['Confirm'] && !confirm_password?.pristine">Passwords do not match.
+        </mat-error>
+      </form>
+    </div>
+    <button [disabled]="myForm.invalid" class="btn">Register</button>
+    <p class="text">
+      Already have an account? <a routerLink="/login">Login Here.</a>
+    </p>
+  </form>
+</div>

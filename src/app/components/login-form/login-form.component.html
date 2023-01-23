@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm">
+    <div class="form-control">
+      <label>Email</label>
+      <input type="text" formControlName="email" />
+      <mat-error *ngIf="email?.invalid && !email?.pristine">{{"Email Length must be in the range of 5-40 characters."}}</mat-error>
+    </div>
+    <div class="form-control">
+      <label>Password</label>
+      <input type="password" formControlName="password" />
+      <mat-error *ngIf="password?.invalid && !password?.pristine">{{"Password Length must be in the range of 5-40 characters."}}</mat-error>
+    </div>
+    <button class="btn"
+      [disabled]=" loginForm.invalid || email?.invalid || password?.invalid || loginForm.pristine || email?.pristine || password?.pristine" (click)="submitHandler()">Login</button>
+    <p class="text">
+      Don't have an account? <a routerLink="/register">Register Here.</a>
+    </p>
+  </form>
+</div>
